@@ -1,0 +1,56 @@
+ <!-- Product Grid -->
+
+ <div class="card product-card">
+
+    <!-- Image -->
+    <div class="image-wrapper">
+      <img
+        src="https://localhost:7025//Image/{{product.productPhotos[0].imageName}}"
+        class="card-img-top main-img"
+        alt=""
+      />
+
+      <!-- Bookmark -->
+      <button class="favorite-icon">
+        <i class="fa fa-bookmark"></i>
+      </button>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Thumbnails -->
+      <div class="thumbnails">
+        @for (item of product.productPhotos; track $index) {
+          <img src="https://localhost:7025//Image/{{item.imageName}}" />
+        }
+      </div>
+
+      <!-- Title -->
+      <h6 class="product-title">
+        {{product.name}}
+      </h6>
+
+      <!-- Description -->
+      <p class="product-desc">
+        {{product.description}}
+      </p>
+
+      <!-- Price -->
+      <div class="price">
+        <span class="old-price">{{product.oldPrice?.toFixed(2) | currency}}</span>
+        <span class="new-price">{{product.newPrice?.toFixed(2) | currency}}</span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-dark btn-sm">
+          <i class="fa fa-shopping-cart"></i> Add
+        </button>
+
+        <button class="btn btn-success btn-sm">
+          <i class="fa fa-info-circle"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
