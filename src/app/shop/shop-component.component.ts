@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ShopServiceService } from './shop-service.service';
 import { Category, IProducts } from '../../Models/IProducts';
 import { IPagination, IPaginationCategory } from '../../Models/IPagination';
+import { ProductParameter } from '../../Models/product-parameter';
 
 @Component({
   selector: 'app-shop-component',
@@ -11,15 +12,20 @@ import { IPagination, IPaginationCategory } from '../../Models/IPagination';
 export class ShopComponentComponent implements OnInit {
   Products:IProducts[];
   Categories:Category[];
-  CategoryId:number;
-  selectPrice:string;
+  productParameter:ProductParameter=new ProductParameter();
+  @ViewChild('search') SearchValue:ElementRef;
+  @ViewChild('CategoryIdValue') CategoryIdvalue:ElementRef;
   constructor(private shopservice:ShopServiceService ){}
   
-  GetProducts(CategoryId,sort){
-    this.shopservice.getProduct(CategoryId,sort).subscribe({
+  GetProducts(productParameter){
+    this.shopservice.getProduct(productParameter).subscribe({
       next: (res:IPagination) => {
         console.log(res);
         this.Products = res.entities;
+        this.productParameter.totalRecord=res.totalCount;
+        this.productParameter.PageNumber=res.pageNumber;
+        this.productParameter.PageSize=res.pageSize;
+        
       }
     })
   }
@@ -35,20 +41,42 @@ export class ShopComponentComponent implements OnInit {
   }
 
   selectedIds(CategoryId:number){
-  this.CategoryId = CategoryId;
-  this.GetProducts(CategoryId,this.SortPrice);
+ this.productParameter.CategoryId = CategoryId;
+  this.GetProducts(this.productParameter);
   }
   ngOnInit(): void {
-    this.GetProducts(this.CategoryId,this.SortPrice);
+    this.GetProducts(this.productParameter);
     this.GetCategory();
   }
   SortPrice(sort:Event){
-    this.selectPrice=(sort.target as HTMLInputElement).value;
-   this.GetProducts(this.CategoryId,this.selectPrice);
+    this.productParameter.sort=(sort.target as HTMLInputElement).value;
+   this.GetProducts(this.productParameter);
   }
  Price=[
   {Name:"Price",value:""},
-  {Name:"Max-Price",value:"PriceDesc"},
-  {Name:"Min-Price",value:"PriceAsc"},
-]
+  {Name:"Max-Price",value:"PriceDsc"},
+  {Name:"Min-Price",value:"PriceAsn"},]
+
+  // Search
+ search:string
+  Search(value:string){
+    debugger;
+    this.productParameter.search=value;
+    this.GetProducts(this.productParameter);
+  }
+  Reset(){
+    debugger
+    this.productParameter.CategoryId=undefined;
+    this.productParameter.sort=''
+    this.productParameter.search='';
+    this.SearchValue.nativeElement.value='';
+    this.CategoryIdvalue.nativeElement.value=0;
+    this.GetProducts(this.productParameter);
+  }
+  // Pagaination
+  OnChangePage(event:any):void{
+    debugger;
+   this.productParameter.PageNumber=event;
+   this.GetProducts(this.productParameter);
+  }
 }
