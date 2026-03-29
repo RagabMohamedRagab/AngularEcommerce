@@ -48,13 +48,8 @@
 
       <!-- Pagination -->
       <div *ngIf="this.productParameter.totalRecord!=0" class="d-flex justify-content-center mt-4">
-       <pagination 
-       [itemsPerPage]="this.productParameter.PageSize" 
-       [totalItems]="this.productParameter.totalRecord"
-       (pageChanged)="OnChangePage($event.page)"
-       [boundaryLinks]="true"
-       >
-      </pagination>
+        <app-pagantaion [PageSize]="this.productParameter.PageSize" [totalRecord]="this.productParameter.totalRecord" (pageChanged)="OnChangePage($event)"></app-pagantaion>
+    
 
       </div>
     </section>
