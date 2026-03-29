@@ -7,11 +7,13 @@ import { CoreModule } from './core/core.module';
 import { provideHttpClient } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ActivatedRoute } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
     
   ],
   imports: [

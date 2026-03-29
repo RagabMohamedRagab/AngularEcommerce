@@ -4,18 +4,24 @@ import { ShopComponentComponent } from './shop-component.component';
 import { ShopItemComponent } from './shop-item/shop-item.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PagantaionComponent } from '../pagantaion/pagantaion.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { AppRoutingModule } from "../app-routing.module";
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
     ShopComponentComponent,
-    ShopItemComponent,PagantaionComponent
+    ShopItemComponent,PagantaionComponent, ProductDetailsComponent
   ],
   imports: [
     CommonModule,
-    PaginationModule
-  ],
+    PaginationModule,
+    AppRoutingModule,
+    RouterLink
+    
+],
   exports:[ShopComponentComponent,PaginationModule]
 })
 export class ShopModule { }

@@ -10,8 +10,8 @@
     </button>
     <div class="collapse navbar-collapse " id="navbarNav">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a routerLink="/" class="nav-link">Home</a></li>
-        <li class="nav-item"><a routerLink="/shop" class="nav-link">Shopping</a></li>
+        <li class="nav-item"><a  routerLink="/" routerLinkActive="active" class="nav-link" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+        <li class="nav-item"><a routerLink="/Shop" routerLinkActive="active" class="nav-link" [routerLinkActiveOptions]="{exact:false}">Shopping</a></li>
         <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Best Seller</a></li>
       </ul>

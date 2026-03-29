@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ShopServiceService } from './shop-service.service';
+import { ShopServiceService } from '../../Services/shop-service.service';
 import { Category, IProducts } from '../../Models/IProducts';
 import { IPagination, IPaginationCategory } from '../../Models/IPagination';
 import { ProductParameter } from '../../Models/product-parameter';

@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { IPagination } from '../../Models/IPagination';
+import { IPagination } from '../Models/IPagination';
 import { Observable } from 'rxjs';
-import { ProductParameter } from '../../Models/product-parameter';
+import { ProductParameter } from '../Models/product-parameter';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +36,7 @@ export class ShopServiceService  {
   getCategory(){
       return this.http.get(this.baseUrl+'Category/get-all');
   }
-  
+  GetProductById(id:number){
+    return this.http.get(this.baseUrl+'Product/GetById/'+id);
+  }
 }
