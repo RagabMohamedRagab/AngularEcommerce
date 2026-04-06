@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -10,7 +11,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    BrowserAnimationsModule
 ],
   exports: [NavbarComponent]
 })

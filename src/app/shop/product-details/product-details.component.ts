@@ -9,18 +9,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit {
-  Product:IProducts;
+  product:IProducts;
+  MainImage:string;
  constructor(private shopservice: ShopServiceService, private route:ActivatedRoute) { }
   ngOnInit(): void {
    var id=this.route.snapshot.paramMap.get('id');
    console.log(id);
+   debugger
    this.shopservice.GetProductById(parseInt(id)).subscribe({
       next:(res:any)=>{
         console.log(res);
-        this.Product=res.entity;
+        this.product=res.entity;
+        this.MainImage=this.product.productPhotos[0].imageName;
       }
     })
+
   }
+  
+    ReplaceImage(src:string){
+      this.MainImage=src;
+    }
 
  
 

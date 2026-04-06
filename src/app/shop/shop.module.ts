@@ -7,19 +7,24 @@ import { PagantaionComponent } from '../pagantaion/pagantaion.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AppRoutingModule } from "../app-routing.module";
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 
 
 @NgModule({
   declarations: [
     ShopComponentComponent,
-    ShopItemComponent,PagantaionComponent, ProductDetailsComponent
+    ShopItemComponent,
+    PagantaionComponent, 
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
     PaginationModule,
     AppRoutingModule,
-    RouterLink
+    RouterLink,NgxImageZoomModule
+    
+     
     
 ],
   exports:[ShopComponentComponent,PaginationModule]
