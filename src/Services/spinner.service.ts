@@ -24,7 +24,7 @@ export class SpinnerService {
   Hide(){
         this.RequestCounter--;
 
-    if(this.RequestCounter>0){
+    if(this.RequestCounter<=0){
       this.RequestCounter=0;
       this.spinner.hide();
     }

@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { ShopServiceService } from '../../Services/shop-service.service';
 import { Category, IProducts } from '../../Models/IProducts';
 import { IPagination, IPaginationCategory } from '../../Models/IPagination';
 import { ProductParameter } from '../../Models/product-parameter';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-shop-component',
@@ -10,12 +11,13 @@ import { ProductParameter } from '../../Models/product-parameter';
   styleUrl: './shop-component.component.scss'
 })
 export class ShopComponentComponent implements OnInit {
+
   Products:IProducts[];
   Categories:Category[];
   productParameter:ProductParameter=new ProductParameter();
   @ViewChild('search') SearchValue:ElementRef;
   @ViewChild('CategoryIdValue') CategoryIdvalue:ElementRef;
-  constructor(private shopservice:ShopServiceService ){}
+  constructor(private shopservice:ShopServiceService,private toater:ToastrService ){}
   
   GetProducts(productParameter){
     this.shopservice.getProduct(productParameter).subscribe({
@@ -25,7 +27,7 @@ export class ShopComponentComponent implements OnInit {
         this.productParameter.totalRecord=res.totalCount;
         this.productParameter.PageNumber=res.pageNumber;
         this.productParameter.PageSize=res.pageSize;
-        
+        this.toater.success(res.message);
       }
     })
   }
